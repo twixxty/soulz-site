@@ -189,8 +189,9 @@
             const { data } = await lanyardRes.json();
             const lookupData = await lookupRes.json();
 
-            if (lookupData.banner && lookupData.banner.link) {
-                document.getElementById('banner').src = `${lookupData.banner.link}?size=1024`;
+            if (lookupData.banner && lookupData.banner.id) {
+            const extension = lookupData.banner.is_animated ? 'gif' : 'png';
+            document.getElementById('banner').src = `https://cdn.discordapp.com/banners/${USER_ID}/${lookupData.banner.id}.${extension}?size=1024`;
             }
 
             document.getElementById('global-name').innerText = data.discord_user.global_name || data.discord_user.username;
